@@ -1,4 +1,3 @@
-#include <bits/stdc++.h>
 #include "BooleanFunctions/Interface.h"
 
 using namespace std;
