@@ -1,0 +1,8 @@
+# ninja log v5
+375	7350	7199657216859153	CMakeFiles/Logic_Design.dir/Assistant.cpp.obj	15e75c11d8c0b392
+311	7051	7199657213796700	CMakeFiles/Logic_Design.dir/NumberSystem/binaryInt.cpp.obj	4429b57407f0cb1b
+17	3318	7199681619836533	CMakeFiles/Logic_Design.dir/main.cpp.obj	234f0c3e75bd7b2e
+2297	2905	7199685562045794	Logic_Design.exe	391ff52d5cb9b7dc
+26	4619	7199681632838869	CMakeFiles/Logic_Design.dir/BooleanFunctions/TabularMethod.cpp.obj	b4dc27e973c9606
+33	3561	7199681622301793	CMakeFiles/Logic_Design.dir/BooleanFunctions/Interface.cpp.obj	b03384940a61eb70
+3	2297	7199685556012095	CMakeFiles/Logic_Design.dir/BooleanFunctions/TabularMethodController.cpp.obj	fd49327ce576f921
