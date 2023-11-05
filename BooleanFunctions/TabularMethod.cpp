@@ -125,38 +125,37 @@ namespace BooleanFunctions {
         return mask;
     }
 
-    int TabularMethod::minimizeExpressions(long long mask, std::vector<int> &dp, std::vector<long long> &used,
-                                           std::vector<std::vector<long long>> &allValid, std::vector<bool> &vis) {
-        if ((!dontCareMask && mask == mintermMask) || ((mask & ~dontCareMask) == (mintermMask & ~dontCareMask))) {
-            allValid.emplace_back(used);
+    int TabularMethod::minimizeExpressions(long long takenMask, std::map<long long, std::pair<int, long long>> &dp,
+                                           std::vector<bool> &vis) {
+        if ((!dontCareMask && takenMask == mintermMask) ||
+            ((takenMask & ~dontCareMask) == (mintermMask & ~dontCareMask))) {
             return 0;
         }
-        if (dp[mask] != -1)return dp[mask];
-        int ans = INT_MAX;
+        if (dp.count(takenMask)) return dp[takenMask].first;
+        std::pair<int, long long> ans = {INT_MAX, -1};
+        int last = INT_MAX;
         for (const auto &[i, j]: unreachable) {
             if (!vis[i]) {
                 vis[i] = true;
-                used.push_back(i);
-                ans = std::min(ans, 1 + minimizeExpressions(mask | i, dp, used, allValid, vis));
-                used.pop_back();
+                last = 1 + minimizeExpressions(takenMask | i, dp, vis);
+                if (last < ans.first) ans = {last, i};
                 vis[i] = false;
             }
         }
-        return dp[mask] = ans;
+        dp[takenMask] = ans;
+        return ans.first;
     }
 
     void TabularMethod::determineCriticalExpressions() {
-        std::vector<int> dp(mintermMask, -1);
+        std::map<long long, std::pair<int, long long>> dp;
         std::vector<bool> vis(mintermMask, false);
-        std::vector<long long> used;
-        std::vector<std::vector<long long>> allValid;
-        int optimal = minimizeExpressions(0, dp, used, allValid, vis);
-        for (const auto &i: allValid)
-            if (i.size() == optimal) {
-                for (const auto &mask: i)
-                    criticalExpression.emplace_back(unreachable[mask]);
-                break;
-            }
+        minimizeExpressions(0, dp, vis);
+        long long mask = 0;
+        while (dp.count(mask)) {
+            long long temp = dp[mask].second;
+            mask |= temp;
+            criticalExpression.emplace_back(unreachable[temp]);
+        }
     }
 
     std::string TabularMethod::getFullExpression() {

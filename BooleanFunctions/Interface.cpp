@@ -6,7 +6,7 @@
 
 namespace BooleanFunctions {
     void Interface::MainFace() {
-        std::cout << "  \t>>>Boolean Functions<<<\n";
+        std::cout << "  \t>>> Boolean Functions <<<\n";
         std::vector<std::string> menu{"Simplification Using Tabular Method (aka Quine-McCluskey Method)"};
         int choice = Assistant::runMenu(menu);
         if (choice == 1)TabularMethodController::start();

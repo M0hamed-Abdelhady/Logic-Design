@@ -51,8 +51,8 @@ namespace BooleanFunctions {
 
         void clearAll();
 
-        int minimizeExpressions(long long int mask, std::vector<int> &dp, std::vector<long long int> &used,
-                                std::vector<std::vector<long long int>> &allValid, std::vector<bool> &vis);
+        int minimizeExpressions(long long takenMask, std::map<long long, std::pair<int, long long>> &dp,
+                            std::vector<bool> &vis);
     };
 
 } // BooleanFunctions
