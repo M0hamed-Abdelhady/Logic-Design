@@ -1,4 +1,2 @@
 cmake-build-debug/
 CMakeLists.txt
-.idea
-.clang-format

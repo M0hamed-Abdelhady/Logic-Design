@@ -4,8 +4,8 @@ project(Logic_Design)
 set(CMAKE_CXX_STANDARD 17)
 
 add_executable(Logic_Design main.cpp
+        BooleanFunctions/Interface.cpp
+        BooleanFunctions/TabularMethodController.cpp
         BooleanFunctions/TabularMethod.cpp
         NumberSystem/binaryInt.cpp
-        Assistant.cpp
-        BooleanFunctions/Interface.cpp
-        BooleanFunctions/TabularMethodController.cpp)
+        Assistant.cpp)
