@@ -2,6 +2,7 @@
 
 using namespace std;
 
+
 int main() {
     BooleanFunctions::Interface::MainFace();
     return 0;
