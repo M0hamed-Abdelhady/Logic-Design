@@ -1,3 +1,0 @@
-D:/Projects/Logic Design/cmake-build-debug/CMakeFiles/Logic_Design.dir
-D:/Projects/Logic Design/cmake-build-debug/CMakeFiles/edit_cache.dir
-D:/Projects/Logic Design/cmake-build-debug/CMakeFiles/rebuild_cache.dir
