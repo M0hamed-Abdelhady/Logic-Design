@@ -36,7 +36,7 @@ namespace BooleanFunctions {
         std::sort(Minterms.begin(), Minterms.end());
         int siz = 0;
         for (const auto &i: Minterms) siz = std::max(siz, i);
-        index.resize(siz);
+        index.resize(siz + 1);
         for (int i = 0; i < Minterms.size(); ++i) index[Minterms[i]] = i;
         for (const auto &i: minterms) {
             NumberSystem::binaryInt term(i, numberOfVariables);
