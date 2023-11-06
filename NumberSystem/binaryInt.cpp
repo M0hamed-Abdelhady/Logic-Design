@@ -15,12 +15,6 @@ namespace NumberSystem {
 
     binaryInt::binaryInt() {}
 
-//    binaryInt::binaryInt(binaryInt &other) {
-//        this->binary = other.binary,
-//        this->decimal = other.decimal,
-//        this->ones = other.ones;
-//    }
-
     binaryInt::binaryInt(long long int Decimal, bool completeBytes) {
         decimal = Decimal;
         binary = decimalToBinary(Decimal, completeBytes);

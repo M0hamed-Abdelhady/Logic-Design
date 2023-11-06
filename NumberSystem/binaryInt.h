@@ -21,8 +21,6 @@ namespace NumberSystem {
 
         explicit binaryInt();
 
-//        explicit binaryInt(binaryInt &other);
-
         explicit binaryInt(long long int Decimal, bool completeBytes = false);
 
         explicit binaryInt(std::string bin, bool completeBytes = false);
