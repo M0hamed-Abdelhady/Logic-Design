@@ -8,4 +8,5 @@ add_executable(Logic_Design main.cpp
         BooleanFunctions/TabularMethodController.cpp
         BooleanFunctions/TabularMethod.cpp
         NumberSystem/binaryInt.cpp
-        Assistant.cpp)
+        Assistant.cpp
+        BooleanFunctions/cell.cpp)

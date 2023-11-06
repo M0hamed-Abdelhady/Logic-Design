@@ -15,6 +15,12 @@ namespace NumberSystem {
 
     binaryInt::binaryInt() {}
 
+//    binaryInt::binaryInt(binaryInt &other) {
+//        this->binary = other.binary,
+//        this->decimal = other.decimal,
+//        this->ones = other.ones;
+//    }
+
     binaryInt::binaryInt(long long int Decimal, bool completeBytes) {
         decimal = Decimal;
         binary = decimalToBinary(Decimal, completeBytes);
@@ -40,11 +46,25 @@ namespace NumberSystem {
         } else binary = bin;
     }
 
+    void binaryInt::operator=(binaryInt &other) {
+        this->binary = other.binary,
+        this->decimal = other.decimal,
+        this->ones = other.ones;
+    }
+
     std::string binaryInt::operator&(binaryInt &other) {
         Assistant::equalizer(this->binary, other.binary);
         std::string res(this->binary.size(), '0');
         for (int i = 0; i < this->binary.size(); ++i)
-            if (this->binary[i] != '0' && other.binary[i] != '0')res[i] = this->binary[i];
+            if (this->binary[i] == '1' && other.binary[i] == '1')res[i] = '1';
+        return res;
+    }
+
+    std::string binaryInt::operator|(binaryInt &other) {
+        Assistant::equalizer(this->binary, other.binary);
+        std::string res(this->binary.size(), '0');
+        for (int i = 0; i < this->binary.size(); ++i)
+            if (this->binary[i] == '1' || other.binary[i] == '1')res[i] = '1';
         return res;
     }
 

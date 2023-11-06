@@ -21,7 +21,7 @@ namespace BooleanFunctions {
 
         static bool isMinterm();
 
-        static void printFunction(std::string &expression, const int &variables);
+        static void printFunction(std::string &expression, const int &variables, bool minterm = true);
 
     public:
         static void start();

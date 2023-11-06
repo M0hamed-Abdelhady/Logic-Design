@@ -9,6 +9,8 @@
 
 class Assistant {
 public:
+    inline static char bar = '0';
+    inline static std::string separator = " * ", secondSeparator = " + ";
     inline static std::vector<char>
             VARIABLES{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
                       'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
@@ -19,6 +21,8 @@ public:
     static void equalizer(std::string &a, std::string &b);
 
     static int runMenu(std::vector<std::string> &menu, bool quit = true);
+
+    static std::set<int> combineSets(const std::set<int> &first, const std::set<int> &second);
 };
 
 

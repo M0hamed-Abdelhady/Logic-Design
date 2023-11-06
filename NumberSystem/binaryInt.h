@@ -21,13 +21,19 @@ namespace NumberSystem {
 
         explicit binaryInt();
 
+//        explicit binaryInt(binaryInt &other);
+
         explicit binaryInt(long long int Decimal, bool completeBytes = false);
 
         explicit binaryInt(std::string bin, bool completeBytes = false);
 
         explicit binaryInt(long long int Decimal, int bits);
 
+        void operator=(binaryInt &other);
+
         std::string operator&(binaryInt &other);
+
+        std::string operator|(binaryInt &other);
 
         const std::string &getNumber() const;
 

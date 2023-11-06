@@ -14,12 +14,16 @@ namespace BooleanFunctions {
         if (isThereDontCare()) {
             std::vector<int> dontCare = inputDontCare();
             TabularMethod fx(minterms, dontCare, numberOfVariables, Minterm);
-            simplifiedFunction = fx.Simplify();
+            fx.Simplify();
+            printFunction(const_cast<std::string &>(fx.SoP()), numberOfVariables);
+            printFunction(const_cast<std::string &>(fx.PoS()), numberOfVariables, false);
         } else {
             TabularMethod fx(minterms, numberOfVariables, Minterm);
-            simplifiedFunction = fx.Simplify();
+            fx.Simplify();
+            printFunction(const_cast<std::string &>(fx.SoP()), numberOfVariables);
+            printFunction(const_cast<std::string &>(fx.PoS()), numberOfVariables, false);
         }
-        printFunction(simplifiedFunction, numberOfVariables);
+        std::cout << '\n';
     }
 
     int TabularMethodController::inputNumberOfVariables() {
@@ -57,13 +61,15 @@ namespace BooleanFunctions {
     }
 
     bool TabularMethodController::isMinterm() {
-        std::cout << "  Term\n";
+        std::cout << "  Choose Input Type (you will get both `PoS` and `SoP` Forms)\n";
         std::vector<std::string> menu{"Minterm", "Maxterm"};
         return Assistant::runMenu(menu, false) == 1;
     }
 
-    void TabularMethodController::printFunction(std::string &expression, const int &variables) {
-        std::cout << "F(";
+    void TabularMethodController::printFunction(std::string &expression, const int &variables, bool minterm) {
+        std::cout << '\n';
+        std::cout << (minterm ? "<SoP Form> " : "<PoS Form> ");
+        std::cout << "->  F(";
         for (int i = 0; i < variables; ++i) {
             std::cout << Assistant::VARIABLES[i];
             if (i != variables - 1)std::cout << ", ";

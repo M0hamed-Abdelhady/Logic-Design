@@ -33,3 +33,10 @@ int Assistant::runMenu(std::vector<std::string> &menu, bool quit) {
 
     }
 }
+
+std::set<int> Assistant::combineSets(const std::set<int>& first, const std::set<int>& second) {
+    std::set<int> ret;
+    ret.insert(first.begin(), first.end());
+    ret.insert(second.begin(), second.end());
+    return ret;
+}
