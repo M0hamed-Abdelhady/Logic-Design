@@ -10,47 +10,41 @@ namespace BooleanFunctions {
         int numberOfVariables = inputNumberOfVariables();
         bool Minterm = isMinterm();
         std::vector<int> minterms = inputMinterms(Minterm);
-        std::string simplifiedFunction;
+        std::string SoP, PoS;
         if (isThereDontCare()) {
             std::vector<int> dontCare = inputDontCare();
             TabularMethod fx(minterms, dontCare, numberOfVariables, Minterm);
-            fx.Simplify();
-            printFunction(const_cast<std::string &>(fx.SoP()), numberOfVariables);
-            printFunction(const_cast<std::string &>(fx.PoS()), numberOfVariables, false);
+            fx.Simplify(), SoP = fx.SoP(), PoS = fx.PoS();
         } else {
             TabularMethod fx(minterms, numberOfVariables, Minterm);
-            fx.Simplify();
-            printFunction(const_cast<std::string &>(fx.SoP()), numberOfVariables);
-            printFunction(const_cast<std::string &>(fx.PoS()), numberOfVariables, false);
+            fx.Simplify(), SoP = fx.SoP(), PoS = fx.PoS();
         }
+        printFunction(SoP, numberOfVariables);
+        printFunction(PoS, numberOfVariables, false);
         std::cout << '\n';
     }
 
     int TabularMethodController::inputNumberOfVariables() {
-        int numberOfVariables;
         std::cout << "Number of Variables:";
-        std::cin >> numberOfVariables;
-        return numberOfVariables;
+        return Assistant::inputValidInteger();
     }
 
     std::vector<int> TabularMethodController::inputMinterms(bool minterm) {
-        int numberOfMinterms;
-        std::string type = minterm ? "Minterms" : "Maxterm";
+        std::string type = minterm ? "Minterms" : "Maxterms";
         std::cout << "Number of " << type << ':';
-        std::cin >> numberOfMinterms;
+        int numberOfMinterms = Assistant::inputValidInteger();
         std::vector<int> minterms(numberOfMinterms);
         std::cout << "Input " << type << "\n>>";
-        for (int i = 0; i < numberOfMinterms; ++i) std::cin >> minterms[i];
+        for (int i = 0; i < numberOfMinterms; ++i) minterms[i] = Assistant::inputValidInteger();
         return minterms;
     }
 
     std::vector<int> TabularMethodController::inputDontCare() {
-        int numberOfDontCare;
         std::cout << "Number of don't care input:";
-        std::cin >> numberOfDontCare;
+        int numberOfDontCare = Assistant::inputValidInteger();
         std::vector<int> dontCare(numberOfDontCare);
         std::cout << "Input the don't care input\n>>";
-        for (int i = 0; i < numberOfDontCare; ++i) std::cin >> dontCare[i];
+        for (int i = 0; i < numberOfDontCare; ++i) dontCare[i] = Assistant::inputValidInteger();
         return dontCare;
     }
 

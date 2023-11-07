@@ -43,16 +43,19 @@ namespace BooleanFunctions {
         indexing(!isMinterm);
         mintermMask = (1 << Minterms.size()) - 1, maxtermMask = (1 << Maxterms.size()) - 1;
 ///     Building Minterms Table
+        std::set<int> element;
         for (const auto &i: Minterms) {
-            NumberSystem::binaryInt term(i, numberOfVariables);;
-            mintermsTable[1][term.popcount()].emplace_back(cell(term, {i}));
-            v[{i}] = true;
+            NumberSystem::binaryInt term(i, numberOfVariables);
+            element = {i};
+            mintermsTable[1][term.popcount()].emplace_back(term, element);
+            v[element] = true;
         }
 ///     Building Maxterms Table
         for (const auto &i: Maxterms) {
             NumberSystem::binaryInt term(i, numberOfVariables);
-            maxtermsTable[1][term.popcount()].emplace_back(cell(term, {i}));
-            v[{i}] = true;
+            element = {i};
+            maxtermsTable[1][term.popcount()].emplace_back(term, element);
+            v[element] = true;
         }
     }
 
@@ -68,16 +71,19 @@ namespace BooleanFunctions {
         mintermDontCareMask = generateExpressionMask(std::set<int>(dontCare.begin(), dontCare.end()));
         maxtermDontCareMask = generateExpressionMask(std::set<int>(dontCare.begin(), dontCare.end()), false);
 ///     Building Minterms Table
+        std::set<int> element;
         for (const auto &i: Minterms) {
             NumberSystem::binaryInt term(i, numberOfVariables);
-            mintermsTable[1][term.popcount()].emplace_back(cell(term, {i}));
-            v[{i}] = true;
+            element = {i};
+            mintermsTable[1][term.popcount()].emplace_back(term, element);
+            v[element] = true;
         }
 ///     Building Maxterms Table
         for (const auto &i: Maxterms) {
             NumberSystem::binaryInt term(i, numberOfVariables);
-            maxtermsTable[1][term.popcount()].emplace_back(cell(term, {i}));
-            v[{i}] = true;
+            element = {i};
+            maxtermsTable[1][term.popcount()].emplace_back(term, element);
+            v[element] = true;
         }
     }
 

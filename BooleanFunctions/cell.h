@@ -17,9 +17,9 @@ namespace BooleanFunctions {
     public:
         cell();
 
-        cell(NumberSystem::binaryInt &bin, std::set<int> Slots);
+        cell(NumberSystem::binaryInt &bin, std::set<int> &Slots);
 
-        cell(NumberSystem::binaryInt &bin, std::set<int> firstSlots, std::set<int> secondSlots);
+        cell(NumberSystem::binaryInt &bin, std::set<int> &firstSlots, std::set<int> &secondSlots);
     };
 
 } // BooleanFunctions

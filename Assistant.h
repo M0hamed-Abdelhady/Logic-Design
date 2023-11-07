@@ -18,11 +18,21 @@ public:
 
     static bool isInteger(const std::string &s);
 
+    static int inputValidChoice(int &lowerLimit, int &higherLimit);
+
+    static int inputValidInteger(bool negative = false);
+
     static void equalizer(std::string &a, std::string &b);
 
     static int runMenu(std::vector<std::string> &menu, bool quit = true);
 
-    static std::set<int> combineSets(const std::set<int> &first, const std::set<int> &second);
+    template<typename... Sets>
+    inline static std::set<int> combineSets(const Sets &... sets) {
+        std::set<int> combinedSet;
+        (..., combinedSet.insert(sets.begin(), sets.end()));
+        return combinedSet;
+    }
+
 };
 
 
