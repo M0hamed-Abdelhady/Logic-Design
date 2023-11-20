@@ -12,7 +12,6 @@ std::vector<char> Assistant::VARIABLES{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', '
                                        'Q', 'R', 'S',
                                        'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
-
 bool Assistant::isInteger(const std::string &s) {
     std::istringstream iss(s);
     int value;
@@ -57,4 +56,3 @@ int Assistant::inputValidInteger(bool negative) {
         } else return stoi(choice);
     }
 }
-
