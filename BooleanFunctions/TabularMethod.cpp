@@ -36,12 +36,17 @@ namespace BooleanFunctions {
 
     void TabularMethod::buildTable(std::vector<int> &minterms, int variables, bool minterm) {
         clearAll();
-        Minterms = minterms, numberOfVariables = variables, mintermDontCareMask = 0;
-        isMinterm = minterm;
+        if (minterm)
+            Minterms = minterms;
+        else Maxterms = minterms;
+        numberOfVariables = variables, isMinterm = minterm, mintermDontCareMask = 0, maxtermDontCareMask = 0;
+
         indexing(isMinterm);
         findTheOtherCanonicalForm();
         indexing(!isMinterm);
+
         mintermMask = (1 << Minterms.size()) - 1, maxtermMask = (1 << Maxterms.size()) - 1;
+
 ///     Building Minterms Table
         std::set<int> element;
         for (const auto &i: Minterms) {
@@ -62,14 +67,19 @@ namespace BooleanFunctions {
     void
     TabularMethod::buildTable(std::vector<int> &minterms, std::vector<int> &DontCare, int variables, bool minterm) {
         clearAll();
-        Minterms = minterms, dontCare = DontCare, numberOfVariables = variables;
-        isMinterm = minterm;
+        if (minterm)
+            Minterms = minterms;
+        else Maxterms = minterms;
+        numberOfVariables = variables, dontCare = DontCare, isMinterm = minterm;
+
         indexing(isMinterm);
         findTheOtherCanonicalForm();
         indexing(!isMinterm);
+
         mintermMask = (1 << Minterms.size()) - 1, maxtermMask = (1 << Maxterms.size()) - 1;
         mintermDontCareMask = generateExpressionMask(std::set<int>(dontCare.begin(), dontCare.end()));
         maxtermDontCareMask = generateExpressionMask(std::set<int>(dontCare.begin(), dontCare.end()), false);
+
 ///     Building Minterms Table
         std::set<int> element;
         for (const auto &i: Minterms) {
@@ -106,7 +116,7 @@ namespace BooleanFunctions {
                 for (const auto &i: dontCare) Minterms.push_back(i);
 ///         Minterms indexing
             std::sort(Minterms.begin(), Minterms.end());
-            mintermIndex.resize(*std::max_element(Minterms.begin(), Minterms.end()) + 1, -1);
+            mintermIndex.resize(1 << numberOfVariables, -1);
             for (int i = 0; i < Minterms.size(); ++i) mintermIndex[Minterms[i]] = i;
         } else {
 ///         Adding don't care to Maxterms
@@ -114,7 +124,7 @@ namespace BooleanFunctions {
                 for (const auto &i: dontCare) Maxterms.push_back(i);
 ///         Maxterms indexing
             std::sort(Maxterms.begin(), Maxterms.end());
-            maxtermIndex.resize(*std::max_element(Maxterms.begin(), Maxterms.end()) + 1, -1);
+            maxtermIndex.resize(1 << numberOfVariables, -1);
             for (int i = 0; i < Maxterms.size(); ++i) maxtermIndex[Maxterms[i]] = i;
         }
     }

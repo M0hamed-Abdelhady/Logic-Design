@@ -55,7 +55,7 @@ namespace BooleanFunctions {
     }
 
     bool TabularMethodController::isMinterm() {
-        std::cout << "  Choose Input Type (you will get both `PoS` and `SoP` Forms)\n";
+        std::cout << "  Choose Input Type (you will get both `PoS` and `SoP` Simplification)\n";
         std::vector<std::string> menu{"Minterm", "Maxterm"};
         return Assistant::runMenu(menu, false) == 1;
     }
