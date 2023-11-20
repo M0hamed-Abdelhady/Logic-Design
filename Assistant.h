@@ -9,12 +9,10 @@
 
 class Assistant {
 public:
-    inline static char bar = '0';
-    inline static std::string separator = " * ", secondSeparator = " + ";
-    inline static std::vector<char>
-            VARIABLES{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
-                      'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    static char bar;
+    static std::string separator, secondSeparator;
 
+    static std::vector<char> VARIABLES;
 
     static bool isInteger(const std::string &s);
 
