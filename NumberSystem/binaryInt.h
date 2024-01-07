@@ -6,40 +6,33 @@
 #define INC_E91D1EAD42FF4AF09009FFCE47BD6E48
 
 #include "../Assistant.h"
+#include <iostream>
+#include <algorithm>
+#include <cmath>
 
 namespace NumberSystem {
 
     class binaryInt {
-        std::string binary;
+        std::string binary; //two's complement
         long long int decimal;
         int ones;
+        bool sign, completeBytes;
+
     public:
-        class comparator {
-        public:
-            bool operator()(const std::set<int> &a, const std::set<int> &b) const;
-        };
 
         explicit binaryInt();
 
         explicit binaryInt(long long int Decimal, bool completeBytes = false);
 
-        explicit binaryInt(std::string bin, bool completeBytes = false);
+        explicit binaryInt(std::string bin, char Sign = '+', bool completeBytes = false);
 
-        explicit binaryInt(long long int Decimal, int bits);
+        binaryInt(const binaryInt &other);
 
-        void operator=(binaryInt &other);
-
-        std::string operator&(binaryInt &other);
-
-        std::string operator|(binaryInt &other);
-
-        const std::string &getNumber() const;
+        void setValue(long long Decimal);
 
         void setValue(const std::string &bin);
 
-        void setValue(long long Decimal, bool completeBytes = false);
-
-        void setValue(long long Decimal, int bits);
+        const std::string &getBinary() const;
 
         long long int getDecimal() const;
 
@@ -47,15 +40,149 @@ namespace NumberSystem {
 
         static int popcount(const std::string &bin);
 
-        static std::string decimalToBinary(long long int Decimal, bool completeBytes = false);
-
-        std::string decimalToBinary(long long int Decimal, int bits);
+        static std::string decimalToBinary(long long int Decimal, int bits);
 
         static long long int binaryToDecimal(const std::string &bin);
 
-        static int determineBits(long long int Decimal, bool completeBytes = false);
+        static std::string TwosComplementPlus1(std::string bin);
 
-        friend Assistant;
+        static int determineBits(long long int Decimal, bool completeBytes);
+
+        static int determineBits(const std::string &bin, bool completeBytes);
+
+        static bool isInteger(const std::string &s);
+
+        bool isBinary(const std::string &s);
+
+        static void equalizer(std::string &a, std::string &b);
+
+
+/// @operators
+
+
+        binaryInt &operator=(const binaryInt &other);
+
+        binaryInt operator++();
+
+        const binaryInt operator++(int);
+
+        binaryInt operator--();
+
+        const binaryInt operator--(int);
+
+        binaryInt operator+() const;
+
+        binaryInt operator-() const;
+
+        binaryInt operator!() const;
+
+        binaryInt operator~() const;
+
+        binaryInt operator&(const binaryInt &other) const;
+
+        binaryInt operator|(const binaryInt &other) const;
+
+        binaryInt operator^(const binaryInt &other) const;
+
+        binaryInt operator>>(const binaryInt &other) const;
+
+        binaryInt operator<<(const binaryInt &other) const;
+
+        binaryInt operator%(const binaryInt &other) const;
+
+        binaryInt operator*(const binaryInt &other) const;
+
+        binaryInt operator/(const binaryInt &other) const;
+
+        binaryInt operator+(const binaryInt &other) const;
+
+        binaryInt operator-(const binaryInt &other) const;
+
+        binaryInt operator&(long long int x) const;
+
+        binaryInt operator|(long long int x) const;
+
+        binaryInt operator^(long long int x) const;
+
+        binaryInt operator>>(long long int x) const;
+
+        binaryInt operator<<(long long int x) const;
+
+        binaryInt operator*(long long int x) const;
+
+        binaryInt operator%(long long int x) const;
+
+        binaryInt operator/(long long int x) const;
+
+        binaryInt operator+(long long int x) const;
+
+        binaryInt operator-(long long int x) const;
+
+        binaryInt operator&=(const binaryInt &other);
+
+        binaryInt operator|=(const binaryInt &other);
+
+        binaryInt operator^=(const binaryInt &other);
+
+        binaryInt operator>>=(const binaryInt &other);
+
+        binaryInt operator<<=(const binaryInt &other);
+
+        binaryInt operator%=(const binaryInt &other);
+
+        binaryInt operator*=(const binaryInt &other);
+
+        binaryInt operator/=(const binaryInt &other);
+
+        binaryInt operator+=(const binaryInt &other);
+
+        binaryInt operator-=(const binaryInt &other);
+
+        binaryInt operator&=(long long int x);
+
+        binaryInt operator|=(long long int x);
+
+        binaryInt operator^=(long long int x);
+
+        binaryInt operator>>=(long long int x);
+
+        binaryInt operator<<=(long long int x);
+
+        binaryInt operator%=(long long int x);
+
+        binaryInt operator*=(long long int x);
+
+        binaryInt operator/=(long long int x);
+
+        binaryInt operator+=(long long int x);
+
+        binaryInt operator-=(long long int x);
+
+        bool operator==(const binaryInt &other) const;
+
+        bool operator!=(const binaryInt &other) const;
+
+        bool operator>=(const binaryInt &other) const;
+
+        bool operator<=(const binaryInt &other) const;
+
+        bool operator>(const binaryInt &other) const;
+
+        bool operator<(const binaryInt &other) const;
+
+        bool operator==(long long int x) const;
+
+        bool operator!=(long long int x) const;
+
+        bool operator>=(long long int x) const;
+
+        bool operator<=(long long int x) const;
+
+        bool operator>(long long int x) const;
+
+        bool operator<(long long int x) const;
+
+        friend std::ostream &operator<<(std::ostream &out, const binaryInt &number);
     };
 
 } // NumberSystem

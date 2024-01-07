@@ -6,6 +6,7 @@
 #define INC_DF742AC576CB46D89BD963F6F9CFDA90
 
 #include "cell.h"
+#include <map>
 
 namespace BooleanFunctions {
 

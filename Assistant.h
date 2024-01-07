@@ -5,7 +5,11 @@
 #ifndef INC_95E33D233FE648CB998E7416DDEC8444
 #define INC_95E33D233FE648CB998E7416DDEC8444
 
-#include <bits/stdc++.h>
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <set>
+#include <string>
 
 class Assistant {
 public:

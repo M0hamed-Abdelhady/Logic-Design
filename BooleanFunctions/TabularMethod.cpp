@@ -135,7 +135,7 @@ namespace BooleanFunctions {
             if (abs(std::next(group)->first - group->first) > 1)continue;
             for (auto &i: group->second) {
                 for (auto &j: std::next(group)->second) {
-                    std::string a = i.binary.getNumber(), b = j.binary.getNumber();
+                    std::string a = i.binary.getBinary(), b = j.binary.getBinary();
                     if (validPair(a, b)) {
                         i.used = j.used = true;
                         std::set<int> combined = Assistant::combineSets(i.slots, j.slots);
@@ -156,7 +156,7 @@ namespace BooleanFunctions {
             for (const auto &group: level.second) {
                 for (const auto &i: group.second) {
                     if (!i.used) {
-                        std::string expression = generateExpression(i.binary.getNumber(), minterm);
+                        std::string expression = generateExpression(i.binary.getBinary(), minterm);
                         if (!expression.empty())
                             unreachable[generateExpressionMask(i.slots, minterm)] = expression;
                     }
